@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>야옹이 분식집</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center mt-3" id="header" onclick="flip()">
+            <div class="front">
+                <h1>야옹이 분식집</h1>
+                <p class="header-p">분식은 누가 뭐라해도 야옹이 분식집!</p>
+                <p class="header-p">건강한 재료로 만들겠습니다</p>
+                <p class="header-p info"><i class="fas fa-info-circle"></i> 주차, 포장, 배달, 예약, 무선 인터넷, 남/녀 화장실 구분</p>
+            </div>
+            <div class="back" style="display: none;">
+                <h1>야옹이 분식집</h1>
+                <p class="header-p"><i class="fas fa-clock"></i>영업 시간: 11AM - 11PM</p>
+                <p class="header-p"><i class="fas fa-phone"></i>전화: 02-1234-5678</p>
+                <p class="header-p"><i class="fas fa-map-marker-alt"></i>주소: 서울시 중구 명동 123</p>
+                <!-- 이 곳에 뒤집혔을 때 보여줄 내용을 넣으세요 -->
+            </div>
+        </div>
+        <div class="row mt-3">
+            <!-- 메뉴 카드들 -->
+        </div>
+    </div>
+    <div id="price-display" class="hidden">
+        <ul id="selected-menus"></ul>
+        총 가격: <span id="total-price">0</span>원
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
