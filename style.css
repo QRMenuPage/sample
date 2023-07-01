@@ -136,10 +136,6 @@ body {
     z-index: 2;
 }
 
-.quantity-btn:hover {
-    background-color: #db2929; /* 버튼 호버 배경색 */
-}
-
 #price-display {
     position: fixed;
     bottom: 0;
