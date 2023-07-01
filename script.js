@@ -1,3 +1,11 @@
+let menuItems = document.querySelectorAll('.menu-item');
+const arrowDown = document.querySelector('.arrow-down');
+const arrowUp = document.querySelector('.arrow-up');
+const arrowDownArea = document.querySelector('.arrow-down-area');
+let selectedMenusList = document.getElementById("selected-menus");
+
+let flipStat = true
+
 var menuData = [
     {name: "떡볶이", price: 6500, image: "메뉴1.jpg"},
     {name: "김밥", price: 3000, image: "메뉴2.jpg"},
@@ -51,52 +59,141 @@ menuData.forEach(function(menu, index) {
     card.appendChild(cardBody);
     col.appendChild(card);
 
-    container.appendChild(col);  // 컨테이너에 카드 추가
+    container.appendChild(col);
+    card.onclick = (e) => handleCardClick(e, menu);
 });
 
 let total = 0;
 let selectedMenus = {};
 
+
+
 function handleCardClick(e, menu) {
     const priceDisplay = document.getElementById("price-display");
     const totalPrice = document.getElementById("total-price");
-    const selectedMenusList = document.getElementById("selected-menus");
+    
 
     e.currentTarget.classList.toggle("selected");
-    
+
     if (e.currentTarget.classList.contains("selected")) {
+        selectedMenus[menu.name] = { price: menu.price, quantity: 1 }; // 새로운 메뉴일 경우 추가
         total += menu.price;
-        selectedMenus[menu.name] = menu.price;
     } else {
-        total -= menu.price;
-        delete selectedMenus[menu.name];
+        if (selectedMenus[menu.name]) {
+            total -= menu.price * selectedMenus[menu.name].quantity;
+            selectedMenus[menu.name].quantity = 0 
+            delete selectedMenus[menu.name]; // 수량이 0이 되면 선택 목록에서 삭제
+        }
     }
 
     if (total > 0) {
-        let listItems = "";
-        for (let name in selectedMenus) {
-            listItems += `<li><div class="menu-item"><span>${name}</span <span>${selectedMenus[name].toLocaleString()}원</span></div></li>`;
-        }
-        selectedMenusList.innerHTML = listItems;
-        totalPrice.textContent = total.toLocaleString();
-        priceDisplay.classList.remove("hidden");
+
+        if (flipStat == true){
+            let listItems = "";
+            for (let name in selectedMenus) {
+                const menuItem = selectedMenus[name];
+                listItems += `
+                <div class="menu-item">
+                <span>${name}</span>
+                <div class="quantity-btn-area">
+                    <button class="quantity-btn" onclick="decreaseQuantity('${name}')">
+                    <i class="fa fa-minus"></i>
+                    </button>
+                    <span>${menuItem.quantity}</span>
+                    <button class="quantity-btn" onclick="increaseQuantity('${name}')">
+                    <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <span>${(menuItem.price * menuItem.quantity).toLocaleString()}원</span>
+                </div>
+                
+                `;
+                     }
+                selectedMenusList.innerHTML = listItems;
+                priceDisplay.classList.remove("hidden");
+            }
+            else{
+                let listItems = "";
+                for (let name in selectedMenus) {
+                    const menuItem = selectedMenus[name];
+                    listItems += `
+                    <div class="menu-item collapsed">
+                    <span>${name}</span>
+                    <div class="quantity-btn-area">
+                        <button class="quantity-btn" onclick="decreaseQuantity('${name}')">
+                        <i class="fa fa-minus"></i>
+                        </button>
+                        <span>${menuItem.quantity}</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('${name}')">
+                        <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <span>${(menuItem.price * menuItem.quantity).toLocaleString()}원</span>
+                    </div>
+                    
+                    `;
+                         }
+                    selectedMenusList.innerHTML = listItems;
+                    priceDisplay.classList.remove("hidden");
+            }
+            totalPrice.textContent = "총 가격 : " + total.toLocaleString()+"원";
     } else {
         selectedMenusList.innerHTML = "";
         priceDisplay.classList.add("hidden");
     }
 }
 
-menuData.forEach((menu, i) => {
-    const card = document.getElementById(`card${i+1}`);
-    card.onclick = (e) => handleCardClick(e, menu);
-});
-/* 이하 생략 */
+function increaseQuantity(name) {
+    selectedMenus[name].quantity += 1;
+    total += selectedMenus[name].price;
+    updatePriceDisplay();
+}
+
+function decreaseQuantity(name) {
+    if (selectedMenus[name].quantity >1) {
+        selectedMenus[name].quantity -= 1;
+        total -= selectedMenus[name].price;
+    }
+    
+    
+    updatePriceDisplay();
+}
+
+function updatePriceDisplay() {
+    const totalPrice = document.getElementById("total-price");
+    const selectedMenusList = document.getElementById("selected-menus");
+
+    let listItems = "";
+    for (let name in selectedMenus) {
+        const menuItem = selectedMenus[name];
+        listItems += `
+                <div class="menu-item">
+                <span>${name}</span>
+                <div class="quantity-btn-area">
+                <button class="quantity-btn" onclick="decreaseQuantity('${name}')">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <span>${menuItem.quantity}</span>
+                <button class="quantity-btn" onclick="increaseQuantity('${name}')">
+                    <i class="fa fa-plus"></i>
+                </button>
+                </div>
+                <span>${(menuItem.price * menuItem.quantity).toLocaleString()}원</span>
+            </div>
+        `;
+    }
+    selectedMenusList.innerHTML = listItems;
+    totalPrice.textContent = "총 가격 : " + total.toLocaleString()+"원";
+}
+
+
+
 
 function flip() {
     const header = document.getElementById('header');
     const front = header.getElementsByClassName('front')[0];
     const back = header.getElementsByClassName('back')[0];
-    
+
     if (front.style.display === "none") {
         front.style.display = "block";
         back.style.display = "none";
@@ -106,3 +203,33 @@ function flip() {
     }
 }
 
+// 아래쪽 화살표를 누를 때 메뉴 숨기기
+function fn_arrowDown() {
+    flipStat=false;
+    menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+      item.classList.add('collapsed');
+    });
+    arrowDownArea.classList.add('collapsed');
+    arrowDown.classList.add('hidden');
+    arrowUp.classList.remove('hidden');
+  }
+  
+  // 위쪽 화살표를 누를 때 메뉴 보이기
+  function fn_arrowUp() {    
+    flipStat=true;
+    menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+      item.classList.remove('collapsed');
+    });
+    arrowDownArea.classList.remove('collapsed');
+    arrowDown.classList.remove('hidden');
+    arrowUp.classList.add('hidden');
+  }
+  
+  // 아래쪽 화살표를 클릭할 때 메뉴 숨기기 이벤트 등록
+  arrowDown.addEventListener('click', fn_arrowDown);
+  
+  // 위쪽 화살표를 클릭할 때 메뉴 보이기 이벤트 등록
+  arrowUp.addEventListener('click', fn_arrowUp);
+  

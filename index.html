@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href ="icon-favicon.png">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKNSHLMEZ3"></script>
@@ -17,6 +18,10 @@
   gtag('config', 'G-EKNSHLMEZ3');
 </script>
 <body>
+    <div id="banner">
+        <a href="www.naver.com"><img src="banner.png" alt="광고"></a>
+    </div>
+
     <div class="container">
         <div class="header text-center mt-3" id="header" onclick="flip()">
             <div class="front">
@@ -36,10 +41,16 @@
         <div class="row mt-3">
             <!-- 메뉴 카드들 -->
         </div>
+        
     </div>
     <div id="price-display" class="hidden">
+        <div class="arrow-down-area">
+        <i class="fas fa-chevron-down arrow-down"></i>
+        </div>
         <ul id="selected-menus"></ul>
-        총 가격: <span id="total-price">0</span>원
+        <div class="total-price-area">
+         <i class="fas fa-chevron-up arrow-up hidden"></i><span id="total-price" >총 가격 : 0원</span>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

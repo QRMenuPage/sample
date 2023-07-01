@@ -1,3 +1,15 @@
+#banner {
+    background-color: #f2f2f2;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 가로 스크롤 생성 방지 */
+  }
+  #banner img {
+    max-height: 100%;
+  }
+
 .header {
     padding: 0.5em;
     border-radius: 20px;
@@ -43,11 +55,6 @@ body {
     color: #db2929;
 }
 
-.custom-control-label::before, .custom-control-label::after {
-    width: 30px;
-    height: 30px;
-}
-
 .card.checked {
     background-color: #ebd1e2;
 }
@@ -64,18 +71,6 @@ body {
     font-size: 0.8rem;
 }
 
-#price-display {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1em;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-}
-
 .hidden {
     transform: translateY(100%);
 }
@@ -86,11 +81,7 @@ body {
     margin: 0 0 1em;
     overflow: auto;
     max-height: 200px;
-}
-
-.menu-item {
-    display: flex;
-    justify-content: space-between;
+    
 }
 
 .flip-card {
@@ -131,4 +122,113 @@ body {
     color: white;
     transform: rotateY(180deg);
 }
+/* 수정된 +-버튼 디자인 */
+.quantity-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #db9fb5; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none;
+    margin: 0; /* 버튼 간격을 없애기 위해 추가 */
+    padding: 0; /* 버튼 간격을 없애기 위해 추가 */
+    z-index: 2;
+}
 
+.quantity-btn:hover {
+    background-color: #db2929; /* 버튼 호버 배경색 */
+}
+
+#price-display {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.3em;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+  
+  .menu-item span:first-child {
+    flex: 2;
+    text-align: left;
+  }
+  
+  .menu-item .quantity-btn-area {
+    display: flex;
+    align-items: center;
+    position :relative;
+  }
+  
+  .menu-item .quantity-btn-area span {
+    padding: 0; 
+    margin: 0.2em;
+  }
+  .menu-item .quantity-btn-area button {
+    padding: 0; 
+    margin: 0.2em;
+  }
+  
+  .menu-item span:last-child {
+    flex: 1;
+    text-align: right;
+  }
+  
+
+  .menu-item .quantity-btn-area button,
+  .menu-item .quantity-btn-area span {
+    width: 30px; /* 버튼과 숫자의 고정된 너비 */
+    height: 30px; /* 버튼과 숫자의 고정된 높이 */
+    flex: none; /* 크기 조정이 되지 않도록 고정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.menu-item.collapsed {
+    display: none;
+  }
+  
+  .arrow-down.hidden {
+    display: none;
+  }
+  
+  .arrow-up.hidden {
+    display: none;
+  }
+  
+  .arrow-down,
+  .arrow-up {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+  }
+
+  #total-price {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .total-price-area {
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow-down-area {
+    padding : 1.2rem;
+  }
+
+  .arrow-down-area.collapsed {
+    display : none;
+  }
