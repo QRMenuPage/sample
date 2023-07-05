@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href ="icon-favicon.png">
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC" crossorigin="anonymous">
+</script>
+
+
+
+
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKNSHLMEZ3"></script>
@@ -18,10 +24,9 @@
   gtag('config', 'G-EKNSHLMEZ3');
 </script>
 <body>
-    <div id="banner">
-        <a href="www.naver.com"><img src="banner.png" alt="광고"></a>
-    </div>
-
+    <!-- <div style="display: flex; justify-content: flex-end;">
+        <a id="add-channel-button" href="javascript:addChannel()"></a>
+    </div> -->
     <div class="container">
         <div class="header text-center mt-3" id="header" onclick="flip()">
             <div class="front">
@@ -29,6 +34,7 @@
                 <p class="header-p">분식은 누가 뭐라해도 야옹이 분식집!</p>
                 <p class="header-p">건강한 재료로 만들겠습니다</p>
                 <p class="header-p info"><i class="fas fa-info-circle"></i> 주차, 포장, 배달, 예약, 무선 인터넷, 남/녀 화장실 구분</p>
+                
             </div>
             <div class="back" style="display: none;">
                 <h1>야옹이 분식집</h1>
