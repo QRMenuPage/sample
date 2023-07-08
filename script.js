@@ -5,11 +5,11 @@ const arrowDownArea = document.querySelector('.arrow-down-area');
 let selectedMenusList = document.getElementById("selected-menus");
 
 let flipStat = true
-// Kakao.init('2d677bf97c3745cd49e61c31d554a4ab');
-// Kakao.Channel.createAddChannelButton({
-//   container: '#add-channel-button',
-//   channelPublicId: '_xjhWRG' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-// });
+Kakao.init('2d677bf97c3745cd49e61c31d554a4ab');
+Kakao.Channel.createAddChannelButton({
+  container: '#add-channel-button',
+  channelPublicId: '_xjhWRG' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+});
 
 
 
