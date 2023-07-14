@@ -172,6 +172,7 @@ body {
   .menu-item .quantity-btn-area button {
     padding: 0; 
     margin: 0.2em;
+    touch-action: manipulation;
   }
   
   .menu-item span:last-child {
